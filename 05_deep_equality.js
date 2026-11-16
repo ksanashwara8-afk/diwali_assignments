@@ -1,28 +1,22 @@
 const t = require("./test_cases");
 
 function isObjectEqual(obj1, obj2) {
-    if (Object.entries(obj1).length == Object.entries(obj2).length) {
-        for (const key in obj1) {
-            return isEqual(obj1[key], obj2[key]);
-        }
+    for (const key in obj1) {
+        return isEqual(obj1[key], obj2[key]);
     }
-    if (obj1.length === obj2.length) {
-        return true;
-    }
-    return false;
+    return obj1.length === obj2.length;
 }
 
 function isEqual(value1, value2) {
-    if (value1 === undefined || value2 === undefined) {
-        return false;
-    }
-    if (value1 === value2) {
-        return true;
-    }
-    if (typeof value1 === "object" && typeof value2 === "object") {
+    if (
+        typeof value1 === "object" &&
+        typeof value2 === "object" &&
+        value1 != null
+    ) {
         return isObjectEqual(value1, value2);
     }
-    return false;
+    if (value1 == null || value2 == null) return false;
+    return value1 === value2;
 }
 
 function test(cases) {
