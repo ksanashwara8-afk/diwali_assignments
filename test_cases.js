@@ -67,9 +67,15 @@ const cases = [
     },
     {
         value1: {},
+        value2: {},
+        result: true,
+        msg: "empty objects",
+    },
+    {
+        value1: {},
         value2: [],
         result: false,
-        msg: "empty array and empty object",
+        msg: "empty object and empty array",
     },
 ];
 

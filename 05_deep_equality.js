@@ -13,16 +13,23 @@ function isObjectEqual(obj1, obj2) {
 }
 
 function isEqual(value1, value2) {
-    if (value1 === value2) return true;
+    if (value1 === undefined || value2 === undefined) {
+        return false;
+    }
+    if (value1 === value2) {
+        return true;
+    }
     if (typeof value1 === "object" && typeof value2 === "object") {
         return isObjectEqual(value1, value2);
     }
     return false;
 }
+
 function test(cases) {
     for (const i of cases) {
         const icon = isEqual(i.value1, i.value2) === i.result ? "✅" : "❌";
         console.log(i.msg, icon);
     }
 }
+
 test(t.cases);
