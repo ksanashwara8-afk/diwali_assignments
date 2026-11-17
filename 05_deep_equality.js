@@ -17,12 +17,8 @@ function areArraysEqual(a, b) {
 
 function areObjectsEqual(a, b) {
     for (const key in a) {
-        if (!(key in b)) {
-            return false;
-        }
-        if (!isEqual(a[key], b[key])) {
-            return false;
-        }
+        if (!(key in b)) return false;
+        if (!isEqual(a[key], b[key])) return false;
     }
     return true;
 }
