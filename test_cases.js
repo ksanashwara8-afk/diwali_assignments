@@ -76,7 +76,7 @@ function testInequality() {
 
 function testNullUndefinedNan() {
     test("Both nulls should be true", true, null, null);
-    test("Both undefineds should be false", false, undefined, undefined);
+    test("Both undefineds should be true", true, undefined, undefined);
     test("Both NaNs should be false", false, NaN, NaN);
 }
 
