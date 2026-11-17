@@ -69,9 +69,21 @@ function testInequality() {
     test("Number and string should be false", false, 1, "1");
     test("Number and array should be false", false, 1, [1]);
     test("Number and object should be false", false, 1, { a: 1 });
+    test("Number and undefined should be false", false, undefined, 1);
+    test("Number and null should be false", false, null, 1);
+    test("Number and NaN should be false", false, NaN, 1);
     test("String and array should be false", false, "1", [1]);
     test("String and object should be false", false, "1", { a: 1 });
+    test("String and undefined should be false", false, undefined, "1");
+    test("String and null should be false", false, null, "1");
+    test("String and NaN should be false", false, NaN, "1");
     test("Array and object should be false", false, [1], { a: 1 });
+    test("Array and undefined should be false", false, undefined, [1]);
+    test("Array and null should be false", false, null, [1]);
+    test("Array and NaN should be false", false, NaN, [1]);
+    test("Object and undefined should be false", false, undefined, { a: 1 });
+    test("Object and null should be false", false, null, { a: 1 });
+    test("Object and NaN should be false", false, NaN, { a: 1 });
 }
 
 function testNullUndefinedNan() {
