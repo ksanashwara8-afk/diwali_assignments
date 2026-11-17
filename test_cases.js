@@ -1,90 +1,91 @@
-const cases = [
-    {
-        value1: { a: 1, b: 2 },
-        value2: { b: 2, a: 1 },
-        result: true,
-        msg: " properties in different order",
-    },
-    {
-        value1: { a: 1 },
-        value2: { b: 1 },
-        result: false,
-        msg: "different properties ",
-    },
-    {
-        value1: [1, 2],
-        value2: { b: 2, a: 1 },
-        result: false,
-        msg: "different objects",
-    },
-    {
-        value1: { a: undefined },
-        value2: { b: 1 },
-        result: false,
-        msg: "first value undefined",
-    },
-    {
-        value1: { b: 1 },
-        value2: { a: undefined },
-        result: false,
-        msg: "second value undefined",
-    },
-    {
-        value1: null,
-        value2: null,
-        result: true,
-        msg: "both null",
-    },
-    {
-        value1: NaN,
-        value2: NaN,
-        result: false,
-        msg: "both NaN",
-    },
-    {
-        value1: 1,
-        value2: 1,
-        result: true,
-        msg: "same number",
-    },
-    {
-        value1: 1,
-        value2: "1",
-        result: false,
-        msg: "same number as different types",
-    },
-    {
-        value1: { a: { b: 1 } },
-        value2: { a: { b: 3 } },
-        result: false,
-        msg: "different nested objects",
-    },
-    {
-        value1: { a: { b: 1 } },
-        value2: { a: { b: 1 } },
-        result: true,
-        msg: "same nested objects",
-    },
-    {
-        value1: [],
-        value2: [],
-        result: true,
-        msg: "empty arrays",
-    },
-    {
-        value1: {},
-        value2: {},
-        result: true,
-        msg: "empty objects",
-    },
-    {
-        value1: {},
-        value2: [],
-        result: false,
-        msg: "empty object and empty array",
-    },
-];
+const eq = require("./05_deep_equality");
+
+function test(msg, expected, a, b) {
+    const icon = eq.isEqual(a, b) === expected ? "✅" : "❌";
+    console.log(icon, "|", msg);
+}
+
+function testBoolean() {
+    test("Same true booleans should be true", true, true, true);
+    test("Same false booleans should be true", true, false, false);
+    test("One false and true should be false", false, true, false);
+}
+
+function testNumber() {
+    test("Same positive numbers should be true", true, 1, 1);
+    test("Same negative numbers should be true", true, -1, -1);
+    test("Different numbers should be false", false, 1, 2);
+    test("Different sign numbers should be false", false, 1, -1);
+}
+
+function testString() {
+    test("Same strings should be true", true, "1", "1");
+    test("Different strings should be false", false, "1", "2");
+}
+
+function testArray() {
+    test("Empty arrays should be true", true, [], []);
+    test("Same arrays should be true", true, [1, 2], [1, 2]);
+    test("Different arrays should be false", false, [1, 2], [1, 3]);
+    test("Same nested arrays should be true", true, [1, [2, 3]], [1, [2, 3]]);
+    test(
+        "Different nested arrays should be false",
+        false,
+        [1, [2, 4]],
+        [1, [2, 3]],
+    );
+}
+
+function testObject() {
+    test("Empty objects should be true", true, {}, {});
+    test("Same objects should be true", true, { b: 2, a: 1 }, { a: 1, b: 2 });
+    test(
+        "Objects with different values should be false",
+        false,
+        { a: 1, b: 3 },
+        { a: 1, b: 2 },
+    );
+    test(
+        "Objects with different keys should be false",
+        false,
+        { a: 1, c: 2 },
+        { a: 1, b: 2 },
+    );
+    test(
+        "Same nested objects should be true",
+        true,
+        { a: 1, b: { c: 2 } },
+        { a: 1, b: { c: 2 } },
+    );
+    test(
+        "Different nested objects should be false",
+        false,
+        { a: 1, b: { c: 1 } },
+        { a: 1, b: { c: 2 } },
+    );
+}
+
+function testInequality() {
+    test("Number and string should be false", false, 1, "1");
+    test("Number and array should be false", false, 1, [1]);
+    test("Number and object should be false", false, 1, { a: 1 });
+    test("String and array should be false", false, "1", [1]);
+    test("String and object should be false", false, "1", { a: 1 });
+    test("Array and object should be false", false, [1], { a: 1 });
+}
+
+function testNullUndefinedNan() {
+    test("Both nulls should be true", true, null, null);
+    test("Both undefineds should be false", false, undefined, undefined);
+    test("Both NaNs should be false", false, NaN, NaN);
+}
 
 module.exports = {
-    cases,
+    testBoolean,
+    testNumber,
+    testString,
+    testArray,
+    testObject,
+    testInequality,
+    testNullUndefinedNan,
 };

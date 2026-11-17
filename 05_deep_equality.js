@@ -25,11 +25,18 @@ function isEqual(value1, value2) {
     return value1 === value2;
 }
 
-function test(cases) {
-    for (const i of cases) {
-        const icon = isEqual(i.value1, i.value2) === i.result ? "✅" : "❌";
-        console.log(i.msg, icon);
-    }
+function main() {
+    t.testBoolean();
+    t.testNumber();
+    t.testString();
+    t.testArray();
+    t.testObject();
+    t.testInequality();
+    t.testNullUndefinedNan();
 }
 
-test(t.cases);
+main();
+
+module.exports = {
+    isEqual,
+};
