@@ -14,7 +14,7 @@ function isEqual(value1, value2) {
     if (
         typeof value1 === "object" &&
         typeof value2 === "object" &&
-        value1 != null &&
+        value1 !== null &&
         value2 !== null
     ) {
         if (Array.isArray(value1) !== Array.isArray(value2)) {

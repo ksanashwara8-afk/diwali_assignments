@@ -36,6 +36,12 @@ const cases = [
         msg: "both null",
     },
     {
+        value1: NaN,
+        value2: NaN,
+        result: false,
+        msg: "both NaN",
+    },
+    {
         value1: 1,
         value2: 1,
         result: true,
