@@ -1,5 +1,3 @@
-const t = require("./test_cases");
-
 function isObjectEqual(obj1, obj2) {
     for (const key in obj1) {
         if (!Object.keys(obj2).includes(key)) {
@@ -24,18 +22,6 @@ function isEqual(value1, value2) {
     }
     return value1 === value2;
 }
-
-function main() {
-    t.testBoolean();
-    t.testNumber();
-    t.testString();
-    t.testArray();
-    t.testObject();
-    t.testInequality();
-    t.testNullUndefinedNan();
-}
-
-main();
 
 module.exports = {
     isEqual,
