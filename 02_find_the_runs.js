@@ -24,5 +24,10 @@ function findRuns(array) {
     result.push(currentRun);
     return result;
 }
-console.log(findRuns([1, 3, 3, 4, 6, 0, 2, 1, 2, 3]));
-console.log(findRuns([1, 0, 3, 4, 6, 4, 2, 1, 2, 3]));
+
+console.log(findRuns([1, 3, 3, 4, 6, 2, 1, 2, 3]));
+console.log(findRuns([1, 3, 4, 6, 4, 2, 1, 2, 3]));
+
+module.exports = {
+    findRuns,
+};
