@@ -11,17 +11,18 @@ function findRuns(array) {
         if (diff === 0) {
             currentRun.push(array[i]);
         }
-        const newDirection = diff > 0 ? 1 : -1;
+        const newDirection = diff >= 0 ? 1 : -1;
 
         if (direction === 0 || direction === newDirection) {
             currentRun.push(array[i]);
         } else {
             result.push(currentRun);
-            currentRun = [array[i - 1], array[i]];
+            currentRun = [array[i]];
         }
         direction = newDirection;
     }
     result.push(currentRun);
     return result;
 }
-console.log(findRuns([1, 2, 3, 4, 6, 4, 2, 1, 2, 3]));
+console.log(findRuns([1, 3, 3, 4, 6, 0, 2, 1, 2, 3]));
+console.log(findRuns([1, 0, 3, 4, 6, 4, 2, 1, 2, 3]));

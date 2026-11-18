@@ -92,12 +92,14 @@ function testNullUndefinedNan() {
     test("Both NaNs should be false", false, NaN, NaN);
 }
 
-module.exports = {
-    testBoolean,
-    testNumber,
-    testString,
-    testArray,
-    testObject,
-    testInequality,
-    testNullUndefinedNan,
-};
+function main() {
+    testBoolean();
+    testNumber();
+    testString();
+    testArray();
+    testObject();
+    testInequality();
+    testNullUndefinedNan();
+}
+
+main();
